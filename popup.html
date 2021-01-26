@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深圳住房轮询</title>
+    <link rel="stylesheet" href="css/popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <div class="row">
+          <div class="col">
+            <div class="label">姓名</div>
+            <div class="value" id="name">--</div>
+          </div>
+          <div class="col">
+            <div class="label">轮候册类型</div>
+            <div class="value" id="type">--</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="label">轮候排序号</div>
+            <div class="value" id="paix">--</div>
+          </div>
+          <div class="col">
+            <div class="label">户籍区排序号</div>
+            <div class="value" id="area_paix">--</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="show">查看历史记录（近5条）</div>
+      <table id="table" class="hidden">
+        <thead>
+          <tr>
+            <th>查询日期</th>
+            <th>轮候排序号</th>
+            <th>户籍区排序号</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="libs/dayjs.min.js"></script>
+    <script src="libs/qs.min.js"></script>
+    <script src="libs/jsencrypt.min.js"></script>
+    <script src="js/popup.js"></script>
+  </body>
+</html>

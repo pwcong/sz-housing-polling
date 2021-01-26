@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深圳住房轮询(用户配置)</title>
+    <link rel="stylesheet" href="css/options.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">深圳住房轮询(用户配置)</div>
+      <div class="table">
+        <table id="table">
+          <thead>
+            <tr>
+              <th>轮候册类别</th>
+              <th>备案回执号</th>
+              <th>申请人(共同申请人)姓名</th>
+              <th>申请人(共同申请人)身份证号</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <select id="waitTpye" name="waitTpye">
+                  <option value="1">安居型商品房</option>
+                  <option value="2">公共租赁住房</option>
+                </select>
+              </td>
+              <td>
+                <input id="bahzh" name="bahzh" />
+              </td>
+              <td>
+                <input id="xingm" name="xingm" />
+              </td>
+              <td>
+                <input id="sfz" name="sfz" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="btns">
+        <button id="save">保存</button>
+      </div>
+    </div>
+    <script src="js/options.js"></script>
+  </body>
+</html>

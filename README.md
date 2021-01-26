@@ -1,2 +1,3 @@
-# sz-housing-polling
-深圳住房轮询Chrome扩展插件
+# SZ Housing Polling
+
+深圳住房轮询 Chrome 扩展插件
