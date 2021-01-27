@@ -1,0 +1,160 @@
+const webpack = require('webpack');
+const WebpackBar = require('webpackbar');
+const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+
+exports.baseWebpackConfig = {
+  entry: {},
+  output: {
+    filename: 'js/[name].[hash].js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+          transpileOnly: true,
+        },
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: 'imgs/[name].[hash].[ext]',
+        },
+      },
+      {
+        test: /\.svg$/,
+        loader: 'file-loader',
+        options: {
+          name: 'imgs/[name].[hash].[ext]',
+        },
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'media/[name].[hash].[ext]',
+        },
+      },
+      {
+        test: /\.(zip|rar|7z)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'archive/[name].[hash].[ext]',
+        },
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[hash].[ext]',
+        },
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.ts'],
+  },
+  optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+        },
+      },
+    },
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new WebpackBar(),
+    new FriendlyErrorsPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
+  ],
+};
+
+exports.buildCssLoadersConfig = function (isProd) {
+  const commonCssLoaders = [
+    isProd
+      ? {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: '../',
+          },
+        }
+      : 'style-loader',
+    'css-loader',
+    {
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          plugins: [['postcss-preset-env', {}]],
+        },
+      },
+    },
+  ];
+
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          use: [...commonCssLoaders, 'sass-loader'],
+        },
+        {
+          test: /\.less$/,
+          use: [
+            ...commonCssLoaders,
+            {
+              loader: 'less-loader',
+              options: {
+                lessOptions: {
+                  modifyVars: {
+                    red: '#8c4e7f',
+                    'checkbox-checked-icon-color': '#8c4e7f',
+                    'switch-on-background-color': '#8c4e7f',
+                    'text-link-color': '#8c4e7f',
+                    'tabbar-item-active-color': '#8c4e7f',
+                    'radio-checked-icon-color': '#8c4e7f',
+                  },
+                },
+              },
+            },
+          ],
+        },
+        {
+          test: /\.css$/,
+          use: commonCssLoaders,
+        },
+      ],
+    },
+    plugins: isProd
+      ? [
+          new MiniCssExtractPlugin({
+            filename: 'css/[name].[hash].css',
+            allChunks: true,
+          }),
+        ]
+      : [],
+  };
+};

@@ -1,0 +1,38 @@
+@import './common.scss';
+
+.table {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .table-head {
+    text-align: center;
+    font-size: 14px;
+    padding: 4px;
+    background-color: rgba($theme-color, 0.1);
+  }
+
+  .table-footer {
+    padding: 8px 14px;
+  }
+
+  .table-main {
+    overflow: auto;
+
+    table {
+      min-width: 100%;
+
+      white-space: nowrap;
+      font-size: 12px;
+
+      thead {
+        background-color: #eeeeee;
+      }
+
+      th,
+      td {
+        padding: 4px;
+      }
+    }
+  }
+}

@@ -1,27 +1,22 @@
 {
-  "name": "深圳住房轮询",
-  "description": "深圳住房轮询插件",
+  "name": "深圳住房轮候",
+  "description": "深圳住房轮候 Chrome 扩展插件",
   "version": "1.0",
   "manifest_version": 2,
   "permissions": ["storage", "https://*/", "http://*/"],
-  "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
-  },
   "browser_action": {
-    "default_popup": "popup.html",
+    "default_popup": "dist/index.html",
     "default_icon": {
-      "16": "imgs/icon.png",
-      "32": "imgs/icon.png",
-      "48": "imgs/icon.png",
-      "128": "imgs/icon.png"
+      "16": "static/logo.png",
+      "32": "static/logo.png",
+      "48": "static/logo.png",
+      "128": "static/logo.png"
     }
   },
-  "options_page": "options.html",
   "icons": {
-    "16": "imgs/icon.png",
-    "32": "imgs/icon.png",
-    "48": "imgs/icon.png",
-    "128": "imgs/icon.png"
+    "16": "static/logo.png",
+    "32": "static/logo.png",
+    "48": "static/logo.png",
+    "128": "static/logo.png"
   }
 }

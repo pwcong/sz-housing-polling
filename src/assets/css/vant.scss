@@ -1,0 +1,17 @@
+@import './common.scss';
+
+.van-nav-bar {
+  background-color: $theme-color;
+  .van-icon,
+  .van-nav-bar__text,
+  .van-nav-bar__title {
+    color: white;
+  }
+}
+
+.van-cell {
+  .van-cell__value,
+  .van-field__control {
+    text-overflow: ellipsis;
+  }
+}
